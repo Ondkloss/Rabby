@@ -108,15 +108,13 @@ const ImportWatchAddress = () => {
           form.setFieldsValue({
             address: address,
           });
-          // await connector.current?.killSession();
           setWalletconnectModalVisible(false);
           setWalletconnectUri('');
+          wallet.disconnectWalletConnect();
         }
       }
     );
-    // connector.current.on('disconnect', () => {
-    //   setWalletconnectModalVisible(false);
-    // });
+
     if (uri) {
       setWalletconnectUri(uri);
     }
@@ -124,6 +122,7 @@ const ImportWatchAddress = () => {
   };
   const handleWalletconnectModalCancel = () => {
     setWalletconnectModalVisible(false);
+    wallet.disconnectWalletConnect();
   };
 
   const handleScanQRCodeSuccess = (data) => {
